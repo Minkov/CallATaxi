@@ -1,0 +1,67 @@
+
+#fares-container{
+    text-align:center;
+}
+
+.table{
+    display:table;
+    border-collapse:collapse;    
+    width:100%;
+}
+
+.row{
+    border-collapse:collapse;
+    margin:0;
+}
+
+.cell{
+    border:1px solid white;
+    border-collapse:collapse;
+    display:inline-block;    
+    width:31%;
+    text-align:center;
+    margin:0;
+}
+
+.cell.header{
+    font-weight:bold;
+    font-size:1.3em;
+    text-align:center;    
+}
+
+.app-buttons{
+    text-align:justify;
+    width:100%; 
+}
+
+.app-button{
+    font-size:1.3em !important;    
+    font-weight:bold;
+    padding:1% 2%;
+    border:2px solid white;
+    text-align:center;
+    margin:1% auto;
+}
+
+.taxi-button{
+    display:block;
+    width:92%;
+}
+
+.like-button{
+    display:inline-block;
+    width:39%;
+    margin:1%;
+}
+
+.taxi-header-likes{
+    font-size:0.7em;
+    display:block
+}
+
+.error{
+    color:#f00;
+}
+.success{
+   color:#0f0;    
+}

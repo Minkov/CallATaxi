@@ -1,0 +1,35 @@
+<div id="details-view" data-id="details-view" data-role="view" data-layout="app-layout" data-title="Taxi"
+     data-show="app.taxiDetails.init">
+    <h2 data-bind="text: taxi.name"></h2>
+    <div class="taxi-buttons">
+        <a class="taxi-button" data-role="listiew-link" data-bind="attr: {href: taxi.callPhone}, text:taxi.callPhone"></a>
+        <a class="taxi-button" data-bind="attr: {href: taxi.website}">Go to web site</a>
+    </div>
+    <span>Likes</span>
+    <span data-bind="text: taxi.likes"></span>
+    <span>Dislikes</span>
+    <span data-bind="text: taxi.dislikes"></span>
+    <div class="table">
+        <div class="row">
+            <div class="header cell">Type</div>
+            <div class="header cell">Daily</div>
+            <div class="header cell">Nightly</div>
+        </div>
+        <div data-role="listview"
+             data-bind="source: taxi.fares" 
+             data-template="fare-template">
+        </div>
+    </div>
+    <p data-bind="text: taxi.description"></p>    
+    <div class="taxi-buttons">
+        <a class="taxi-button" data-role="button" data-bind="events: {click: like}">Like</a>
+        <a class="taxi-button" data-role="button" data-bind="events: {click: dislike}">Dislike</a>
+    </div>
+</div>
+<script id="fare-template" type="text/x-kendo-template">
+    <div class="row">
+        <div class="cell">#:type#</div>
+        <div class="cell">#:costs.daily#</div>
+        <div class="cell">#:costs.nightly#</div>
+    </div>
+</script>

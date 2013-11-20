@@ -1,0 +1,20 @@
+<div id="cities-view" data-id="cities-view" data-role="view" data-layout="app-layout" data-title="Cities"
+     data-show="app.cities.init">
+    <select id="cities-list" data-role="dropdownlist"
+            data-bind="source: cities, events: { change: onCityChanged}"
+            data-text-field="Name"
+            data-value-field="Id">
+    </select>
+    <div id="city-details">
+        <h1 data-bind="text: city.Name" data-align="center"></h1>
+        <p>
+            <span>Country: </span>
+            <span data-bind="text: city.Country"></span><br/>
+            <span>Latitude: </span>
+            <span data-bind="text: city.Latitude"></span><br/>
+            <span>Longitude: </span>
+            <span data-bind="text: city.Longitude"></span>
+        </p>
+        <ul data-role="listview" data-bind="source: taxis" data-template="taxi-template"></ul>
+    </div>
+</div> 

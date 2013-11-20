@@ -1,0 +1,13 @@
+<div id="user-view" 
+    data-id="user-view" 
+    data-role="view" 
+    data-title="User Info"
+    data-layout="app-layout" 
+    data-show="app.users.init"
+    data-hide="app.users.dispose">
+    <p>Your username currently is <strong data-bind="text: username"></strong></p>
+    <input type="text" data-bind="value: newUsername" />
+    <button data-role="button" data-bind="events: {click: changeUsername}">Change</button>
+    <span class="message success" data-bind="text: successMessage"></span>
+    <span class="message error" data-bind="text: errMessage"></span>
+</div>

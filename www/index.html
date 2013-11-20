@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="styles/kendo/kendo.mobile.all.min.css" rel="stylesheet" />
+    <link href="styles/app.css" rel="stylesheet" />
+    <script src="cordova.js"></script>
+    <script src="scripts/libs/jquery.min.js"></script>
+    <script src="scripts/libs/kendo/kendo.mobile.min.js"></script>
+    <script src="scripts/libs/rsvp.min.js"></script>
+    <script src="scripts/libs/sha1.js"></script>
+    <script src="scripts/helpers/http-request.js"></script>
+    <script src="scripts/helpers/helpers.js"></script>
+    <script src="scripts/app/users-view-model.js"></script>
+    <script src="scripts/app/taxi-details-view-model.js"></script>
+    <script src="scripts/app/cities-view-model.js"></script>
+    <script src="scripts/app.js"></script>
+</head>
+<body>
+    <div id="home-view" data-id="home-view" data-role="view" data-title="Home"
+            data-layout="app-layout">
+        <p>
+            Welcome to the Call me a Taxi App. This is an application for checking Taxi companies.
+        </p>
+        <p>
+            Everybody can see a list of taxi companies all over the world, check their tariff and see a feedback given from other users.
+        </p>
+    </div>
+
+    <div id="cities-view" data-id="cities-view" data-role="view" data-layout="app-layout" data-title="Cities"
+            data-show="app.cities.init">
+        <select id="cities-list" data-role="dropdownlist"
+                data-bind="source: cities, events: { change: onCityChanged}"
+                data-text-field="Name"
+                data-value-field="Id"></select>
+        <div id="city-details">
+            <h1 data-bind="text: city.Name" data-align="center"></h1>
+            <p>
+                <span>Country: </span>
+                <span data-bind="text: city.Country"></span><br />
+                <span>Latitude: </span>
+                <span data-bind="text: city.Latitude"></span><br />
+                <span>Longitude: </span>
+                <span data-bind="text: city.Longitude"></span>
+            </p>
+            <ul data-role="listview" data-bind="source: taxis" data-template="taxi-template"></ul>
+        </div>
+    </div>
+
+    <div id="details-view" data-id="details-view" data-role="view" data-layout="app-layout" data-title="Taxi Details"
+            data-show="app.taxiDetails.init">
+        <h2 data-bind="text: taxi.name"></h2>
+        <div class="app-buttons">
+            <a class="taxi-button app-button" data-role="listiew-link" data-bind="attr: {href: taxi.callPhone}, text:taxi.getPhoneString"></a>
+            <a class="taxi-button app-button" data-bind="attr: {href: taxi.website}">Go to web site</a>
+            <a class="like-button app-button" data-role="button" data-bind="events: {click: like}">Like</a>
+            <a class="like-button app-button" data-role="button" data-bind="events: {click: dislike}">Dislike</a>
+        </div>
+        <span>Likes</span>
+        <span data-bind="text: taxi.likes"></span>
+        <span>Dislikes</span>
+        <span data-bind="text: taxi.dislikes"></span>
+        <div id="fares-container">
+            <div class="table">
+                <div class="row">
+                    <div class="header cell">Type</div><div class="header cell">Daily</div><div class="header cell">Nightly</div>
+                </div>
+                <div data-role="listview"
+                     data-bind="source: taxi.fares"
+                     data-template="fare-template">
+                </div>
+            </div>
+        </div>
+        <p data-bind="text: taxi.description"></p>
+    </div>
+
+    <div id="user-view"
+            data-id="user-view"
+            data-role="view"
+            data-title="User Info"
+            data-layout="app-layout"
+            data-show="app.users.init"
+            data-hide="app.users.dispose">
+        <p>
+            Your username currently is <strong data-bind="text: username"></strong>
+        </p>
+        <input type="text" data-bind="value: newUsername" />
+        <button data-role="button" data-bind="events: {click: changeUsername}">Change</button>
+        <span class="message success" data-bind="text: successMessage"></span>
+        <span class="message error" data-bind="text: errMessage"></span>
+    </div>
+
+    <script id="fare-template" type="text/x-kendo-template">
+        <div class="row">
+            <div class="cell"><strong>#:type#</strong></div><div class="cell">#:costs.daily#</div><div class="cell">#:costs.nightly#</div>
+        </div>
+    </script>
+
+    <script id="taxi-template" type="text/x-kendo-template">
+        <li>
+            <a data-role="listview-link" href="\#details-view?taxiId=#=Id#">
+                <h3>
+                    #:Name#
+                    <span class="taxi-header-likes">(liked: #: Likes #, disliked: #: Dislikes#)</span>
+                </h3>
+            </a>
+        </li>
+    </script>
+    <div id="app-layout" data-id="app-layout" data-role="layout">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+        <div data-role="footer">
+            <div data-role="tabstrip">
+                <a href="#home-view" data-icon="home">Home</a>
+                <a href="#cities-view" data-icon="info">Cities</a>
+                <a href="#user-view" data-icon="contacts">User</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
