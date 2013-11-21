@@ -6,15 +6,19 @@
     <link href="styles/kendo/kendo.mobile.all.min.css" rel="stylesheet" />
     <link href="styles/app.css" rel="stylesheet" />
     <script src="cordova.js"></script>
+
     <script src="scripts/libs/jquery.min.js"></script>
     <script src="scripts/libs/kendo/kendo.mobile.min.js"></script>
     <script src="scripts/libs/rsvp.min.js"></script>
     <script src="scripts/libs/sha1.js"></script>
+
     <script src="scripts/helpers/http-request.js"></script>
     <script src="scripts/helpers/helpers.js"></script>
+
     <script src="scripts/app/users-view-model.js"></script>
     <script src="scripts/app/taxi-details-view-model.js"></script>
     <script src="scripts/app/cities-view-model.js"></script>
+
     <script src="scripts/app.js"></script>
 </head>
 <body>
@@ -30,6 +34,12 @@
     </div>
     <div id="cities-view" data-id="cities-view" data-role="view" data-layout="app-layout" data-title="Choose a City"
          data-show="app.cities.init">
+        <div>
+            Position:
+            <span data-bind="text:location.lat"></span><br />
+            <span data-bind="text:location.long"></span>
+            <hr />
+        </div>
         <select id="cities-list" data-role="dropdownlist"
                 data-bind="source: cities, events: { change: onCityChanged}"
                 data-text-field="Name"
@@ -61,14 +71,6 @@
         <span data-bind="text: taxi.likes"></span>
         <span>Dislikes</span>
         <span data-bind="text: taxi.dislikes"></span>
-        <div>
-            Liked:
-            <span data-bind="text: taxi.liked"></span>
-        </div>
-        <div>
-            Disliked:
-            <span data-bind="text: taxi.disliked"></span>
-        </div>
         <div id="fares-container">
             <div class="table">
                 <div class="row">
