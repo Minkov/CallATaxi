@@ -54,6 +54,10 @@
     margin:1%;
 }
 
+    .like-button[data-enabled=disabled]{
+        background:#ccc;
+    }
+
 .taxi-header-likes{
     font-size:0.7em;
     display:block
@@ -64,4 +68,38 @@
 }
 .success{
    color:#0f0;    
+}
+
+#home-image{
+    display:block;
+    width:60%;
+    margin:0 auto;
+}
+
+.taxis-list{
+    margin:0 auto;
+    width:90%;
+    padding:0;
+}
+
+.taxi-item{
+    display:block;
+    margin:0 auto;
+    padding:0;
+    width:90%;
+    border-bottom:1px solid white;
+    /*border:1px solid yellow;*/
+}
+.taxi-item:last-of-type{
+    border:none;
+}
+.taxi-item a{
+    display:block;
+    /*border:1px solid lightgreen;*/
+}
+
+.taxi-item h3{
+    margin:0;
+    font-size:1.7em;
+    /*border:1px solid lightblue;*/
 }

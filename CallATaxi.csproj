@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="www\cordova.js" />
+    <Content Include="www\images\taxi-image.png" />
     <Content Include="www\index.html" />
     <Content Include="www\scripts\app.js" />
     <Content Include="www\scripts\app\cities-view-model.js" />
@@ -169,6 +170,7 @@
     <Content Include="www\scripts\libs\kendo\kendo.mobile.min.js" />
     <Content Include="www\scripts\libs\rsvp.min.js" />
     <Content Include="www\scripts\libs\sha1.js" />
+    <Content Include="www\scripts\_refference.js" />
     <Content Include="www\styles\app.css" />
     <Content Include="www\styles\images\icenium.png" />
     <Content Include="www\styles\images\icenium2x.png" />

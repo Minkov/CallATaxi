@@ -18,18 +18,18 @@
     <script src="scripts/app.js"></script>
 </head>
 <body>
-    <div id="home-view" data-id="home-view" data-role="view" data-title="Home"
-            data-layout="app-layout">
+    <div id="home-view" data-id="home-view" data-role="view" data-title="Welcome to Call a Taxi"
+         data-layout="app-layout">
         <p>
-            Welcome to the Call me a Taxi App. This is an application for checking Taxi companies.
+            This is an application for checking Taxi companies.
         </p>
         <p>
             Everybody can see a list of taxi companies all over the world, check their tariff and see a feedback given from other users.
         </p>
+        <img src="images/taxi-image.png" id="home-image" />
     </div>
-
-    <div id="cities-view" data-id="cities-view" data-role="view" data-layout="app-layout" data-title="Cities"
-            data-show="app.cities.init">
+    <div id="cities-view" data-id="cities-view" data-role="view" data-layout="app-layout" data-title="Choose a City"
+         data-show="app.cities.init">
         <select id="cities-list" data-role="dropdownlist"
                 data-bind="source: cities, events: { change: onCityChanged}"
                 data-text-field="Name"
@@ -44,23 +44,31 @@
                 <span>Longitude: </span>
                 <span data-bind="text: city.Longitude"></span>
             </p>
-            <ul data-role="listview" data-bind="source: taxis" data-template="taxi-template"></ul>
+            <ul class="taxis-list" data-role="listview" data-bind="source: taxis" data-template="taxi-template"></ul>
         </div>
     </div>
 
     <div id="details-view" data-id="details-view" data-role="view" data-layout="app-layout" data-title="Taxi Details"
-            data-show="app.taxiDetails.init">
+         data-show="app.taxiDetails.init">
         <h2 data-bind="text: taxi.name"></h2>
         <div class="app-buttons">
             <a class="taxi-button app-button" data-role="listiew-link" data-bind="attr: {href: taxi.callPhone}, text:taxi.getPhoneString"></a>
             <a class="taxi-button app-button" data-bind="attr: {href: taxi.website}">Go to web site</a>
-            <a class="like-button app-button" data-role="button" data-bind="events: {click: like}">Like</a>
-            <a class="like-button app-button" data-role="button" data-bind="events: {click: dislike}">Dislike</a>
+            <a class="like-button app-button" data-role="button" data-bind="events: {click: like}, attr : {data-enabled: taxi.taxiLikedClass}">Like</a>
+            <a class="like-button app-button" data-role="button" data-bind="events: {click: dislike}, attr:{data-enabled: taxi.taxiDislikedClass}">Dislike</a>
         </div>
         <span>Likes</span>
         <span data-bind="text: taxi.likes"></span>
         <span>Dislikes</span>
         <span data-bind="text: taxi.dislikes"></span>
+        <div>
+            Liked:
+            <span data-bind="text: taxi.liked"></span>
+        </div>
+        <div>
+            Disliked:
+            <span data-bind="text: taxi.disliked"></span>
+        </div>
         <div id="fares-container">
             <div class="table">
                 <div class="row">
@@ -76,12 +84,12 @@
     </div>
 
     <div id="user-view"
-            data-id="user-view"
-            data-role="view"
-            data-title="User Info"
-            data-layout="app-layout"
-            data-show="app.users.init"
-            data-hide="app.users.dispose">
+         data-id="user-view"
+         data-role="view"
+         data-title="User Info"
+         data-layout="app-layout"
+         data-show="app.users.init"
+         data-hide="app.users.dispose">
         <p>
             Your username currently is <strong data-bind="text: username"></strong>
         </p>
@@ -98,7 +106,7 @@
     </script>
 
     <script id="taxi-template" type="text/x-kendo-template">
-        <li>
+        <li class="taxi-item">
             <a data-role="listview-link" href="\#details-view?taxiId=#=Id#">
                 <h3>
                     #:Name#

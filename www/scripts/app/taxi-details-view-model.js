@@ -13,6 +13,8 @@ var app = app || {};
             likes: 0,
             dislikes: 0,
             fares: [],
+            taxiLikedClass: "",
+            taxiDislikedClass: "",
             callPhone: function () {
                 return "tel:" + viewModel.get("taxi.telephone");
             }
@@ -36,13 +38,16 @@ var app = app || {};
                 var oldLikes = self.get("taxi.dislikes");
                 self.set("taxi.dislikes", oldLikes + 1);
             });
+        },
+        viewComments: function () {
+
         }
     });
 
     function init(e) {
         kendo.bind(e.view.element, viewModel);
         var taxiId = e.view.params.taxiId;
-        httpRequest.getJSON(a.servicesUrl + "taxis/" + taxiId)
+        httpRequest.getJSON(a.servicesUrl + "taxis/" + taxiId, { "x-phoneId": window.phoneId })
         .then(function (taxi) {
             var self = viewModel;
             var fares = [
@@ -81,9 +86,16 @@ var app = app || {};
             self.set("taxi.callTelephone", "tel:" + taxi.Telephone);
             self.set("taxi.getPhoneString", "Call " + taxi.Telephone);
             self.set("taxi.website", taxi.Website);
+
             self.set("taxi.likes", taxi.Likes);
             self.set("taxi.dislikes", taxi.Dislikes);
             self.set("taxi.fares", fares);
+
+            self.set("taxi.taxiLikedClass", (taxi.Liked === true) ? "disabled" : "");
+            self.set("taxi.taxiDislikedClass", (taxi.Disliked === true) ? "disabled" : "");
+            self.set("taxi.liked", taxi.Liked);
+            self.set("taxi.disliked", taxi.Disliked);
+
             console.log(taxi);
             /*var taxiViewModel = {
             id: taxi.Id,
@@ -94,6 +106,8 @@ var app = app || {};
             }
             viewModel.set("taxi", taxiViewModel);
             */
+        }, function (e) {
+            notification.alert(e);
         });
     }
 

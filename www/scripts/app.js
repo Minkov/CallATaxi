@@ -1,13 +1,17 @@
+/// <reference path="_refference.js" />
 
 var app = app || {};
 
 (function() {
-    document.addEventListener("deviceready", function() {
-        app.servicesUrl = "http://taxiornot.apphb.com/api/";
+    document.addEventListener("deviceready", function () {
+        app.servicesUrl = "http://callataxi.apphb.com/api/";
+        //app.servicesUrl = "http://taxiornot.apphb.com/api/";
         //app.servicesUrl = "http://localhost:60415/api/";
-        new kendo.mobile.Application();   
-        
-        console.log("before user load");
+        new kendo.mobile.Application();
+        httpRequest.getJSON(app.servicesUrl + "init")
+            .then(function (data) {
+                notification.alert(data)
+            });
         loadUserInfo();
     }); 
     

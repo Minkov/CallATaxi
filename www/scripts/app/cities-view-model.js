@@ -1,3 +1,4 @@
+/// <reference path="taxi-details-view-model.js" />
 var app = app || {};
 
 (function(a) {
