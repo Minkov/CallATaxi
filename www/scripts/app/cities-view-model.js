@@ -19,13 +19,15 @@ var app = app || {};
 
     function init(e) {
         kendo.bind(e.view.element, viewModel);
-        app.helpers.getGeolocation()
-            .then(function (position) {
-                viewModel.set("location.lat", position.coords.latitude);
-                viewModel.set("location.long", position.coords.longitude);
+        //app.helpers.getGeolocation()
+        //    .then(function (position) {
+                //viewModel.set("location.lat", position.coords.latitude);
+                //viewModel.set("location.long", position.coords.longitude);
 
-                return httpRequest.getJSON(app.servicesUrl + "cities");
-            })
+        //return 
+        //httpRequest.getJSON(app.servicesUrl + "cities");
+        //})
+        httpRequest.getJSON(app.servicesUrl + "cities")
         .then(function (cities) {
             viewModel.set("cities", cities);
             return httpRequest.getJSON(app.servicesUrl + "cities/" + cities[0].Id);
