@@ -19,15 +19,15 @@ var app = app || {};
 
     function init(e) {
         kendo.bind(e.view.element, viewModel);
-        //app.helpers.getGeolocation()
-        //    .then(function (position) {
-                //viewModel.set("location.lat", position.coords.latitude);
-                //viewModel.set("location.long", position.coords.longitude);
-
-        //return 
-        //httpRequest.getJSON(app.servicesUrl + "cities");
-        //})
-        httpRequest.getJSON(app.servicesUrl + "cities")
+        app.helpers.getGeolocation()
+        .then(function (position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+            viewModel.set("location.lat", lat);
+            viewModel.set("location.long", lon);
+            var locationParam = "location=" + lat + ";" + lon;
+            return httpRequest.getJSON(app.servicesUrl + "cities?" + locationParam);
+        })
         .then(function (cities) {
             viewModel.set("cities", cities);
             return httpRequest.getJSON(app.servicesUrl + "cities/" + cities[0].Id);
@@ -36,6 +36,24 @@ var app = app || {};
             viewModel.set("city", city);
             viewModel.set("taxis", city.Taxis);
         });
+        //kendo.bind(e.view.element, viewModel);
+        ////app.helpers.getGeolocation()
+        ////    .then(function (position) {
+        //        //viewModel.set("location.lat", position.coords.latitude);
+        //        //viewModel.set("location.long", position.coords.longitude);
+
+        ////return 
+        ////httpRequest.getJSON(app.servicesUrl + "cities");
+        ////})
+        //httpRequest.getJSON(app.servicesUrl + "cities")
+        //.then(function (cities) {
+        //    viewModel.set("cities", cities);
+        //    return httpRequest.getJSON(app.servicesUrl + "cities/" + cities[0].Id);
+        //})
+        //.then(function (city) {
+        //    viewModel.set("city", city);
+        //    viewModel.set("taxis", city.Taxis);
+        //});
     }
 
     a.cities = {

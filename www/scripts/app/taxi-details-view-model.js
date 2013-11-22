@@ -86,10 +86,10 @@ var app = app || {};
         self.set("taxi.dislikes", taxi.Dislikes);
         self.set("taxi.fares", fares);
 
-        self.set("taxi.taxiLikedClass", (taxi.Liked === true) ? "disabled" : "");
-        self.set("taxi.taxiDislikedClass", (taxi.Disliked === true) ? "disabled" : "");
-        self.set("taxi.liked", taxi.Liked);
-        self.set("taxi.disliked", taxi.Disliked);
+        //self.set("taxi.taxiLikedClass", (taxi.Liked === true) ? "disabled" : "");
+        //self.set("taxi.taxiDislikedClass", (taxi.Disliked === true) ? "disabled" : "");
+        //self.set("taxi.liked", taxi.Liked);
+        //self.set("taxi.disliked", taxi.Disliked);
     }
 
     function onTaxiLoadedError(err) {
